@@ -1,0 +1,32 @@
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+
+  li {
+    background-color: purple;
+    padding: 1em;
+    margin-right: 10px;
+    width: 25%;
+    height: 200px;
+    margin-bottom: 1em;
+    display: flex;
+    flex-direction: column;
+
+    p {
+      margin: 0;
+    }
+
+    p.name {
+      font-weight: normal;
+      font-size: 1.2em;
+    }
+
+    p.price {
+      font-weight: bold;
+      font-size: 1.7em;
+    }
+  }
+}

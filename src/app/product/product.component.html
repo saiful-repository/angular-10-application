@@ -1,0 +1,10 @@
+<h1>My Products</h1>
+
+<a href="#" routerLink="/create-product">Add Product</a>
+<ul *ngIf="products">
+  <li *ngFor="let product of products">
+    <p class="name">Product: <strong>{{ product.name }}</strong></p>
+    <p class="price">Price: <strong>{{ product.price }}</strong></p>
+    <a href="#" [routerLink]="['/product',product.id]">View More</a>
+  </li>
+</ul>

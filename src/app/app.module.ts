@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { CreateProductComponent } from './create-product/create-product.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { CreateProductComponent } from './create-product/create-product.componen
     HomeComponent,
     ProductComponent,
     ProductDetailsComponent,
-    CreateProductComponent
+    CreateProductComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,

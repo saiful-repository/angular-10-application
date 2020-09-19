@@ -1,3 +1,4 @@
+<h1>Add Products</h1>
 <form #myform="ngForm" (ngSubmit)="addProduct(product)">
   <div class="form-group" [class.has-error]="name.invalid && name.touched" [class.has-success]="name.valid">
     <label for="name" class="control-label">Product Name:</label>

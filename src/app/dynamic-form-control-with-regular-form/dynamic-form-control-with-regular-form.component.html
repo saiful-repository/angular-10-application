@@ -1,0 +1,28 @@
+<h1>Dynamic form control</h1>
+<form (ngSubmit)="submitForm()">
+  <div class="container">
+    <div class="row" *ngFor="let data of dataarray; let i=index">
+      <div class="form-group col-md-3">
+        <label>Name</label>
+        <input type="text" class="form-control" name="name{{i}}" [(ngModel)]="data.name" />
+      </div>
+      <div class="form-group col-md-3">
+        <label>Email</label>
+        <input type="text" class="form-control" name="email{{i}}" [(ngModel)]="data.email" />
+      </div>
+      <div class="form-group col-md-3">
+        <label>Phone</label>
+        <input type="text" class="form-control" name="phone{{i}}" [(ngModel)]="data.phone" />
+      </div>
+      <div class="form-group col-md-2" style="margin-top:28px;">
+        <span *ngIf="i!=0" (click)="deleteForm(i)" class="btn btn-danger">x</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-4">
+        <span (click)="addForm()" class="btn btn-success">Add New</span>
+        <button class="btn btn-success" style="margin-left:10px;">Submit</button>
+      </div>
+    </div>
+  </div>
+</form>

@@ -10,6 +10,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { CreateProductComponent } from './create-product/create-product.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { DataPassToComponentComponent } from './data-pass-to-component/data-pass-to-component.component';
+import { DynamicFormControlWithRegularFormComponent } from './dynamic-form-control-with-regular-form/dynamic-form-control-with-regular-form.component';
+import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
 
 
 @NgModule({
@@ -19,7 +22,10 @@ import { RegistrationComponent } from './registration/registration.component';
     ProductComponent,
     ProductDetailsComponent,
     CreateProductComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    DataPassToComponentComponent,
+    DynamicFormControlWithRegularFormComponent,
+    ReactiveFormComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,13 @@
+
+  <div>
+    <h1>User List</h1>
+
+    <div class="form-group" *ngFor="let data of childArray">
+      <label for="name" class="control-label">User Name:</label>
+      <input type="text" class="form-control" name="name" readonly value="{{data.name}}">
+      <label for="name" class="control-label">Email:</label>
+      <input type="text" class="form-control" name="name" readonly value="{{data.email}}">
+    </div>
+  </div>
+  
+

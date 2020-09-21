@@ -1,1 +1,32 @@
-<p>reactive-form works!</p>
+<h1>Reactive Form</h1>
+
+<form [formGroup]="myformGroup" (ngSubmit)="submitForm(myformGroup)">
+  <div class="form-group" [class.has-error]="myformGroup.get('firstName').invalid && myformGroup.get('firstName').touched" [class.has-success]="myformGroup.get('firstName').valid">
+    <label for="name" class="control-label">First Name:</label>
+    <input type="text" class="form-control" formControlName="firstName">
+    <div *ngIf="myformGroup.get('firstName').hasError('required') && myformGroup.get('firstName').touched"> User name is required</div>
+  </div>
+  <div class="form-group" [class.has-error]="myformGroup.get('lastName').invalid && myformGroup.get('lastName').touched" [class.has-success]="myformGroup.get('lastName').valid">
+    <label for="name" class="control-label">Last Name:</label>
+    <input type="text" class="form-control" formControlName="lastName">
+    <div *ngIf="myformGroup.get('lastName').hasError('required') && myformGroup.get('lastName').touched"> Last name is required</div>
+  </div>
+  <h2>Address</h2>
+  <div formGroupName="address">
+    <div class="form-group" [class.has-error]="myformGroup.get(['address','address1']).invalid && myformGroup.get(['address','address1']).touched" [class.has-success]="myformGroup.get(['address','address1']).valid">
+      <label for="name" class="control-label">Address 1:</label>
+      <input type="text" class="form-control" formControlName="address1">
+      <div *ngIf="myformGroup.get(['address','address1']).hasError('required') && myformGroup.get(['address','address1']).touched"> Address 1 is required</div>
+    </div>
+  </div>  
+  <div formArrayName="mobiles">
+    <label>Enter Mobile Number</label>
+    <div *ngFor="let mobile of mobiles.controls; let i=index">
+      <label>Mobile {{i+1}}</label>
+      <input type="text" formControlName="{{i}}" />     
+    </div>
+    <a (click)="addmobiles()">Add New Mobile</a>
+  </div>
+
+  <button type="submit" class="btn btn-primary" [disabled]="myformGroup.invalid">Submit</button>
+</form>

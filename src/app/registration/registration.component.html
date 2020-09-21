@@ -11,16 +11,16 @@
     <label for="email" class="control-label">Email:</label>
     <input type="text" class="form-control" name="email" [(ngModel)]="user.email" #email="ngModel" required email>
     <div *ngIf="email.invalid && (myform.submitted || email.touched)" class="alert alert-danger">
-      <div *ngIf="email.errors?.required && email.touched"> Email is required </div>
-      <div *ngIf="email.errors?.email && email.touched"> Email is invalid</div>
+      <div *ngIf="email.hasError('required') && email.touched"> Email is required </div>
+      <div *ngIf="email.hasError('email') && email.touched"> Email is invalid</div>
     </div>    
   </div>
   <div class="form-group" [class.has-error]="password.invalid && password.touched" [class.has-success]="password.valid">
     <label for="password" class="control-label">Password:</label>
     <input type="password" class="form-control" name="password" [(ngModel)]="user.password" #password="ngModel" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
     <div *ngIf="password.invalid && (myform.submitted || password.touched)" class="alert alert-danger">
-      <div *ngIf="password.errors.required"> Password is required. </div>
-      <div *ngIf="password.errors.pattern">Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters.</div>
+      <div *ngIf="password.hasError('required')"> Password is required. </div>
+      <div *ngIf="password.hasError('pattern')">Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters.</div>
     </div>
   </div>
   <div class="form-group" [class.has-error]="confirmpassword.invalid && confirmpassword.touched" [class.has-success]="confirmpassword.valid">

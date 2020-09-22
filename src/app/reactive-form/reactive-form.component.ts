@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormArray, Validators, FormControl } from '@angular/forms'
+import { FormGroup, FormArray, Validators, FormBuilder, FormControl } from '@angular/forms'
 
 @Component({
   selector: 'app-reactive-form',
@@ -9,20 +9,24 @@ import { FormGroup, FormArray, Validators, FormControl } from '@angular/forms'
 export class ReactiveFormComponent implements OnInit {
 
   myformGroup: FormGroup;
-  counter:number
+  counter: number
+  expCounter:number
 
-  constructor() {
-    this.myformGroup = new FormGroup({
-      firstName: new FormControl('', Validators.required),
-      lastName: new FormControl('', Validators.required),
-      address: new FormGroup({
-        address1: new FormControl('', Validators.required),
-        address2:new FormControl(''),
-        city: new FormControl(''),
-        zip: new FormControl('')
+  constructor(private fb:FormBuilder) {
+    this.myformGroup = this.fb.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      address: this.fb.group({
+        address1: ['', Validators.required],
+        address2:[''],
+        city: ['', Validators.required],
+        zip: ['']
       }),
-      mobiles: new FormArray([
-        new FormControl('')
+      mobiles: this.fb.array([
+        this.mobileArrayContent()
+      ]),
+      experience: this.fb.array([
+        this.experienceArrayContent()
       ])
     });
   }
@@ -31,23 +35,58 @@ export class ReactiveFormComponent implements OnInit {
     
   }
 
+  mobileArrayContent(): FormControl {
+    return this.fb.control('')
+  }
+
+  experienceArrayContent(): FormGroup {
+    return this.fb.group({
+      company: [''],
+      jobTitle: [''],
+      salary: ['']
+    })
+  }
+
   get mobiles() {
     return this.myformGroup.get("mobiles") as FormArray
   }
+
+  get experience() {
+    return this.myformGroup.get("experience") as FormArray
+  }
   addmobiles() {
     this.mobiles.push(
-      new FormControl('')
+      this.mobileArrayContent()
     )
   }
-  submitForm(newFormGroup:FormGroup) {
+
+  addexperience() {
+    this.experience.push(
+      this.experienceArrayContent()
+    )
+  }
+
+  submitForm(newFormGroup: FormGroup) {
+    console.log("FormJSON:" + JSON.stringify(newFormGroup.value));
     console.log("FirstName:" + newFormGroup.get("firstName").value);
     console.log("LastName:" + newFormGroup.get("lastName").value);
     console.log("address1:" + newFormGroup.get(['address', 'address1']).value);
+    console.log("address2:" + newFormGroup.get(['address', 'address2']).value);
+    console.log("city:" + newFormGroup.get(['address', 'city']).value);
+    console.log("zip:" + newFormGroup.get(['address', 'zip']).value);
     this.counter = 0
+    this.expCounter = 0
+
     for (let mob of this.mobiles.controls) {
       console.log(this.myformGroup.get(['mobiles', this.counter]).value)      
       this.counter=this.counter+1
     }
-    
+
+    for (let exp of this.experience.controls) {
+      console.log(this.myformGroup.get(['experience', this.expCounter]).get("company").value)
+      console.log(this.myformGroup.get(['experience', this.expCounter]).get("jobTitle").value)
+      console.log(this.myformGroup.get(['experience', this.expCounter]).get("salary").value)
+      this.expCounter = this.expCounter + 1
+    }
   }
 }

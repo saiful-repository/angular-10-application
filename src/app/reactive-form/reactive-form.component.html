@@ -4,7 +4,8 @@
   <div class="form-group" [class.has-error]="myformGroup.get('firstName').invalid && myformGroup.get('firstName').touched" [class.has-success]="myformGroup.get('firstName').valid">
     <label for="name" class="control-label">First Name:</label>
     <input type="text" class="form-control" formControlName="firstName">
-    <div *ngIf="myformGroup.get('firstName').hasError('required') && myformGroup.get('firstName').touched"> User name is required</div>
+    <div *ngIf="myformGroup.get('firstName').hasError('required') && myformGroup.get('firstName').touched"> First name is required</div>
+    <div *ngIf="(myformGroup.get('firstName').hasError('minlength') || myformGroup.get('firstName').hasError('maxlength')) && myformGroup.get('firstName').touched"> First name should be min 5 and max 10 character</div>
   </div>
   <div class="form-group" [class.has-error]="myformGroup.get('lastName').invalid && myformGroup.get('lastName').touched" [class.has-success]="myformGroup.get('lastName').valid">
     <label for="name" class="control-label">Last Name:</label>
@@ -18,17 +19,17 @@
       <input type="text" class="form-control" formControlName="address1">
       <div *ngIf="myformGroup.get(['address','address1']).hasError('required') && myformGroup.get(['address','address1']).touched"> Address 1 is required</div>
     </div>
-    <div class="form-group" [class.has-error]="myformGroup.get(['address','address2']).invalid && myformGroup.get(['address','address2']).touched" [class.has-success]="myformGroup.get(['address','address2']).valid">
+    <div class="form-group" [class.has-error]="myformGroup.get(['address','address2']).invalid && myformGroup.get(['address','address2']).touched" [class.has-success]="myformGroup.get(['address','address2']).value.length>0">
       <label for="name" class="control-label">Address 2:</label>
       <input type="text" class="form-control" formControlName="address2">
       <div *ngIf="myformGroup.get(['address','address2']).hasError('required') && myformGroup.get(['address','address2']).touched"> Address 2 is required</div>
     </div>
-    <div class="form-group" [class.has-error]="myformGroup.get(['address','city']).invalid && myformGroup.get(['address','city']).touched" [class.has-success]="myformGroup.get(['address','city']).valid">
+    <div class="form-group" [class.has-error]="myformGroup.get(['address','city']).invalid && myformGroup.get(['address','city']).touched" [class.has-success]="myformGroup.get(['address','city']).value.length>0">
       <label for="name" class="control-label">City:</label>
       <input type="text" class="form-control" formControlName="city">
       <div *ngIf="myformGroup.get(['address','city']).hasError('required') && myformGroup.get(['address','city']).touched"> City is required</div>
     </div>
-    <div class="form-group" [class.has-error]="myformGroup.get(['address','zip']).invalid && myformGroup.get(['address','zip']).touched" [class.has-success]="myformGroup.get(['address','zip']).valid">
+    <div class="form-group" [class.has-error]="myformGroup.get(['address','zip']).invalid && myformGroup.get(['address','zip']).touched" [class.has-success]="myformGroup.get(['address','zip']).value.length>0">
       <label for="name" class="control-label">Zip:</label>
       <input type="text" class="form-control" formControlName="zip">
       <div *ngIf="myformGroup.get(['address','zip']).hasError('required') && myformGroup.get(['address','zip']).touched"> Zip is required</div>
@@ -37,21 +38,29 @@
   <h2>Enter Mobile Number</h2> <input type="button" class="btn-primary" value="Add New Mobile" (click)="addmobiles()" />
   <div formArrayName="mobiles">
     <div *ngFor="let mobile of mobiles.controls; let i=index">
-      <label>Mobile {{i+1}}</label>
-      <input type="text" [formControlName]="i" />
-    </div>    
-  </div>
+      <div class="form-group" [class.has-error]="mobile.invalid && mobile.touched" [class.has-success]="mobile.valid">
+        <label class="control-label">Mobile {{i+1}}</label>
+        <input class="form-control" type="text" [formControlName]="i" />
+      </div>
+      </div>
+    </div>
   <h2>Enter Your Experience</h2> <input type="button" class="btn-primary" value="Add New Experience" (click)="addexperience()" />
   <div formArrayName="experience" *ngFor="let experi of experience.controls; let i = index">
     <div [formGroupName]="i">
-      <label>company</label>
-      <input type="text" formControlName="company" [id]="'company'+i" />
-      <label>jobTitle</label>
-      <input type="text" formControlName="jobTitle" [id]="'jobTitle'+i" />
-      <label>salary</label>
-      <input type="text" formControlName="salary" [id]="'salary'+i" />
-    </div>
-  </div>  
-  <p> <button type="submit" class="btn btn-primary" [disabled]="myformGroup.invalid">Submit</button></p>
+      <div class="form-group" [class.has-error]="experi.get('company').invalid && experi.get('company').touched" [class.has-success]="experi.get('company').valid">
+        <label class="control-label">Company</label>
+        <input class="form-control" type="text" formControlName="company" [id]="'company'+i" />
+      </div>
+      <div class="form-group" [class.has-error]="experi.get('jobTitle').invalid && experi.get('jobTitle').touched" [class.has-success]="experi.get('jobTitle').valid">
+        <label class="control-label">JobTitle</label>
+        <input class="form-control" type="text" formControlName="jobTitle" [id]="'jobTitle'+i" />
+      </div>
+      <div class="form-group" [class.has-error]="experi.get('salary').invalid && experi.get('salary').touched" [class.has-success]="experi.get('salary').valid">
+        <label class="control-label">Salary</label>
+        <input class="form-control" type="text" formControlName="salary" [id]="'salary'+i" />
+      </div>
+      </div>
+    </div>  
+  <p> <button type="submit" class="btn btn-primary">Submit</button></p>
  
 </form>

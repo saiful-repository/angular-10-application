@@ -38,29 +38,53 @@
   <h2>Enter Mobile Number</h2> <input type="button" class="btn-primary" value="Add New Mobile" (click)="addmobiles()" />
   <div formArrayName="mobiles">
     <div *ngFor="let mobile of mobiles.controls; let i=index">
-      <div class="form-group" [class.has-error]="mobile.invalid && mobile.touched" [class.has-success]="mobile.valid">
-        <label class="control-label">Mobile {{i+1}}</label>
-        <input class="form-control" type="text" [formControlName]="i" />
+      <div class="row" style="margin-bottom:10px;">
+        <div class="form-group" [class.has-error]="mobile.invalid && mobile.touched" [class.has-success]="mobile.valid">
+          <label class="control-label col-sm-2">Mobile {{i+1}}</label>
+          <div class="col-sm-4">
+            <input class="form-control" type="text" [formControlName]="i" />
+          </div>
+          <div class="col-sm-6">
+            <span *ngIf="i!=0" (click)="deleteMobile(i)" class="btn btn-danger">x</span>
+          </div>
+        </div>
       </div>
       </div>
     </div>
   <h2>Enter Your Experience</h2> <input type="button" class="btn-primary" value="Add New Experience" (click)="addexperience()" />
   <div formArrayName="experience" *ngFor="let experi of experience.controls; let i = index">
     <div [formGroupName]="i">
-      <div class="form-group" [class.has-error]="experi.get('company').invalid && experi.get('company').touched" [class.has-success]="experi.get('company').valid">
-        <label class="control-label">Company</label>
-        <input class="form-control" type="text" formControlName="company" [id]="'company'+i" />
+      <div class="row" style="margin-bottom:10px;">
+        <div class="form-group" [class.has-error]="experi.get('company').invalid && experi.get('company').touched" [class.has-success]="experi.get('company').valid">
+          <label class="control-label col-sm-2">Company</label>
+          <div class="col-sm-4">
+            <input class="form-control" type="text" formControlName="company" [id]="'company'+i" />
+          </div>
+          <div class="col-sm-2">
+            <span *ngIf="i!=0" (click)="deleteExperience(i)" class="btn btn-danger">x</span>
+          </div>
+        </div>
       </div>
-      <div class="form-group" [class.has-error]="experi.get('jobTitle').invalid && experi.get('jobTitle').touched" [class.has-success]="experi.get('jobTitle').valid">
-        <label class="control-label">JobTitle</label>
-        <input class="form-control" type="text" formControlName="jobTitle" [id]="'jobTitle'+i" />
+      <div class="row" style="margin-bottom:10px;">
+        <div class="form-group" [class.has-error]="experi.get('jobTitle').invalid && experi.get('jobTitle').touched" [class.has-success]="experi.get('jobTitle').valid">
+          <label class="control-label col-sm-2">JobTitle</label>
+          <div class="col-sm-4">
+            <input class="form-control" type="text" formControlName="jobTitle" [id]="'jobTitle'+i" />
+          </div>
+        </div>
       </div>
-      <div class="form-group" [class.has-error]="experi.get('salary').invalid && experi.get('salary').touched" [class.has-success]="experi.get('salary').valid">
-        <label class="control-label">Salary</label>
-        <input class="form-control" type="text" formControlName="salary" [id]="'salary'+i" />
+      <div class="row" style="margin-bottom:10px;">
+        <div class="form-group" [class.has-error]="experi.get('salary').invalid && experi.get('salary').touched" [class.has-success]="experi.get('salary').valid">
+          <label class="control-label col-sm-2">Salary</label>
+          <div class="col-sm-4">
+            <input class="form-control" type="text" formControlName="salary" [id]="'salary'+i" />
+          </div>
+        </div>
+        </div>
       </div>
-      </div>
-    </div>  
-  <p> <button type="submit" class="btn btn-primary">Submit</button></p>
+    </div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
  
 </form>

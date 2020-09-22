@@ -66,6 +66,14 @@ export class ReactiveFormComponent implements OnInit {
     )
   }
 
+  deleteMobile(index) {
+   this.mobiles.removeAt(index)
+  }
+
+  deleteExperience(index) {
+    this.experience.removeAt(index)
+  }
+
   submitForm(newFormGroup: FormGroup) {
     newFormGroup.markAllAsTouched();
     if (newFormGroup.valid) {

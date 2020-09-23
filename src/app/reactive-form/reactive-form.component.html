@@ -35,7 +35,11 @@
       <div *ngIf="myformGroup.get(['address','zip']).hasError('required') && myformGroup.get(['address','zip']).touched"> Zip is required</div>
     </div>
   </div>
-  <h2>Enter Mobile Number</h2> <input type="button" class="btn-primary" value="Add New Mobile" (click)="addmobiles()" />
+  <div class="row">
+    <div class="col-sm-4">
+      <h2>Enter Mobile Number  <span (click)="addmobiles()" class="btn btn-primary">+</span></h2>
+    </div>
+  </div>  
   <div formArrayName="mobiles">
     <div *ngFor="let mobile of mobiles.controls; let i=index">
       <div class="row" style="margin-bottom:10px;">
@@ -49,9 +53,13 @@
           </div>
         </div>
       </div>
-      </div>
     </div>
-  <h2>Enter Your Experience</h2> <input type="button" class="btn-primary" value="Add New Experience" (click)="addexperience()" />
+  </div>
+  <div class="row">
+    <div class="col-sm-4">
+      <h2>Enter Your Experience  <span (click)="addexperience()" class="btn btn-primary">+</span></h2>
+    </div>
+  </div>
   <div formArrayName="experience" *ngFor="let experi of experience.controls; let i = index">
     <div [formGroupName]="i">
       <div class="row" style="margin-bottom:10px;">
@@ -80,11 +88,11 @@
             <input class="form-control" type="text" formControlName="salary" [id]="'salary'+i" />
           </div>
         </div>
-        </div>
       </div>
     </div>
+  </div>
   <div class="form-group">
     <button type="submit" class="btn btn-primary">Submit</button>
   </div>
- 
+
 </form>

@@ -1,18 +1,18 @@
 <h1>Dynamic form control</h1>
-<form (ngSubmit)="submitForm()">
+<form (ngSubmit)="submitForm(myform)" #myform="ngForm">
   <div class="container">
     <div class="row" *ngFor="let data of dataarray; let i=index">
-      <div class="form-group col-md-3">
+      <div class="form-group col-md-3" [class.has-error]="name.invalid && name.touched" [class.has-success]="name.valid">
         <label>Name</label>
-        <input type="text" class="form-control" name="name{{i}}" [(ngModel)]="data.name" />
+        <input type="text" class="form-control" [name]="'name'+i" [(ngModel)]="data.name" #name="ngModel" required/>
       </div>
-      <div class="form-group col-md-3">
+      <div class="form-group col-md-3" [class.has-error]="email.invalid && email.touched" [class.has-success]="email.valid">
         <label>Email</label>
-        <input type="text" class="form-control" name="email{{i}}" [(ngModel)]="data.email" />
+        <input type="text" class="form-control" [name]="'email'+i" [(ngModel)]="data.email" #email="ngModel"  required/>
       </div>
-      <div class="form-group col-md-3">
+      <div class="form-group col-md-3" [class.has-error]="phone.invalid && phone.touched" [class.has-success]="phone.valid">
         <label>Phone</label>
-        <input type="text" class="form-control" name="phone{{i}}" [(ngModel)]="data.phone" />
+        <input type="text" class="form-control" [name]="'phone'+i" [(ngModel)]="data.phone" #phone="ngModel"  required/>
       </div>
       <div class="form-group col-md-2" style="margin-top:28px;">
         <span *ngIf="i!=0" (click)="deleteForm(i)" class="btn btn-danger">x</span>
@@ -21,7 +21,7 @@
     <div class="row">
       <div class="form-group col-md-4">
         <span (click)="addForm()" class="btn btn-success">Add New</span>
-        <button class="btn btn-success" style="margin-left:10px;">Submit</button>
+        <button class="btn btn-success" style="margin-left:10px;" [disabled]="myform.invalid">Submit</button>
       </div>
     </div>
   </div>

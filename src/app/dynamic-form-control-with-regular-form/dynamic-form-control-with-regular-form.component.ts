@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { employee } from '../model/employee';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-dynamic-form-control-with-regular-form',
@@ -17,8 +18,10 @@ export class DynamicFormControlWithRegularFormComponent implements OnInit {
     this.dataarray.push(this.employee);
   }
 
-  submitForm() {
-    console.log(this.dataarray);
+  submitForm(myform: NgForm) {    
+    if (myform.valid) {
+      console.log(this.dataarray);
+    }
   }
 
   addForm() {

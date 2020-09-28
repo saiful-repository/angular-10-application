@@ -13,6 +13,8 @@ import { RegistrationComponent } from './registration/registration.component';
 import { DataPassToComponentComponent } from './data-pass-to-component/data-pass-to-component.component';
 import { DynamicFormControlWithRegularFormComponent } from './dynamic-form-control-with-regular-form/dynamic-form-control-with-regular-form.component';
 import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -32,7 +34,9 @@ import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

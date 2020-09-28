@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../model/product'
 import { ProductapiService } from '../service/productapi.service';
+import { DisplayMessageService } from '../service/display-message.service';
 
 @Component({
   selector: 'app-create-product',
@@ -15,7 +16,7 @@ export class CreateProductComponent implements OnInit {
     description: null
   };
 
-  constructor(private _productAPI: ProductapiService) {
+  constructor(private _productAPI: ProductapiService, private msgDisplay: DisplayMessageService) {
 
   }
 
@@ -27,10 +28,10 @@ export class CreateProductComponent implements OnInit {
     this._productAPI.addProduct(newProduct).subscribe(
       res => {
         console.log(JSON.stringify(res));
-        alert(JSON.stringify(res));
+        this.msgDisplay.showSucessMessage("Product has been added successfully", "Success");
       },
       err => {
-        alert(err);
+        this.msgDisplay.showErrorMessage("Product adding failed", "Error");
         console.log(err.message);
       }
     )

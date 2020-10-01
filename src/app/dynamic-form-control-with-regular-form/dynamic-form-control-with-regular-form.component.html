@@ -1,7 +1,7 @@
 <h1>Dynamic form control</h1>
 <form (ngSubmit)="submitForm(myform)" #myform="ngForm">
   <div class="container">
-    <div class="row" *ngFor="let data of dataarray; let i=index">
+    <div class="row" *ngFor="let data of dataarray; let i=index" @fade>
       <div class="form-group col-md-3" [class.has-error]="name.invalid && name.touched" [class.has-success]="name.valid">
         <label>Name</label>
         <input type="text" class="form-control" [name]="'name'+i" [(ngModel)]="data.name" #name="ngModel" required/>

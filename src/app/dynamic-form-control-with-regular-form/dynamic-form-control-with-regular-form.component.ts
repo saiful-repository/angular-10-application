@@ -1,11 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { employee } from '../model/employee';
 import { NgForm } from '@angular/forms';
+import { fade } from '../animation/animation';
 
 @Component({
   selector: 'app-dynamic-form-control-with-regular-form',
   templateUrl: './dynamic-form-control-with-regular-form.component.html',
-  styleUrls: ['./dynamic-form-control-with-regular-form.component.scss']
+  styleUrls: ['./dynamic-form-control-with-regular-form.component.scss'],
+  animations: [
+    fade
+  ]
 })
 export class DynamicFormControlWithRegularFormComponent implements OnInit {
 

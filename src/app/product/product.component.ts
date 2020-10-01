@@ -1,11 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductapiService } from '../service/productapi.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { fade } from '../animation/animation';
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  styleUrls: ['./product.component.scss']
+  styleUrls: ['./product.component.scss'],
+  animations: [
+    fade
+  ]
 })
 export class ProductComponent implements OnInit {
 

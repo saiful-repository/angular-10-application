@@ -2,9 +2,12 @@
 
 <a href="#" routerLink="/create-product">Add Product</a>
 <ul *ngIf="products">
-  <li *ngFor="let product of products">
+  <li *ngFor="let product of products | paginate:config">
     <p class="name">Product: <strong>{{ product.name }}</strong></p>
     <p class="price">Price: <strong>{{ product.price }}</strong></p>
     <a href="#" [routerLink]="['/product',product.id]">View More</a>
   </li>
 </ul>
+<div class="row">
+  <pagination-controls (pageChange)="pageChange($event)" class="my-pagination" maxSize="5"></pagination-controls>
+</div>

@@ -8,14 +8,14 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./product-details.component.scss']
 })
 export class ProductDetailsComponent implements OnInit {
-  id: number;
+  id: string;
   sub: any;
   product: Object;
   constructor(private pservice: ProductDetailsService, private _Activatedroute: ActivatedRoute) { }
 
   ngOnInit() {
     this.sub = this._Activatedroute.paramMap.subscribe(params => {
-      this.id = +params.get('id');
+      this.id = params.get('id')
     });
 
     this.pservice.getProductDetails(this.id).subscribe(data => {
